@@ -37,7 +37,7 @@ if [ "$readme" = "y" ]; then
     touch README.md && echo "# $nombreRepo" > README.md
     echo "\n${GREEN}Archivos creados${ENDCOLOR}\n"
 else
-    echo "README.md no fue creado"
+    echo "\n${RED}README.md no fue creado${ENDCOLOR}\n"
 fi
 
 
