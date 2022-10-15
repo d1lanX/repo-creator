@@ -6,7 +6,7 @@ ENDCOLOR="\e[0m"
 
 echo "\n"
 echo "${GREEN}|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-|${ENDCOLOR}"
-echo "${GREEN}| Simple script para crear un repositorio en github |${ENDCOLOR}"
+echo "${GREEN}|          (⊃｡•́‿•̀｡)⊃━✿✿✿✿✿✿  repocreator            |${ENDCOLOR}"
 echo "${GREEN}|  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  |${ENDCOLOR}"
 echo "${GREEN}\nEscribe el nombre del repositorio: ${ENDCOLOR}"
 echo -n "> "
@@ -38,7 +38,6 @@ elif [ "$privacidad" != "1" ] && [ "$privacidad" != "2" ]; then
     echo "\n${GREEN}INFO:${ENDCOLOR}Opcion \"$privacidad\" no disponible, se configuro el repositorio como privado\n"
 fi
 
-echo "Es privado el repo: $privado"
 
 echo "\n${GREEN}Deseas crear archivos README.md y .gitignore? (y/n)${ENDCOLOR}"
 read -r readme
@@ -67,7 +66,7 @@ echo -n "\n${GREEN}Usuario de Github:${ENDCOLOR} "
 read username
 
 echo "\nSi no tienes un token de acceso a tu cuenta de Github..."
-echo "este es el momento para obtenerlo https://tinyurl.com/44xjrs79\n"
+echo "lo puedes obtener desde aqui https://tinyurl.com/44xjrs79\n"
 
 
 curl -s -u $username https://api.github.com/user/repos -d '{"name":"'$nombreRepo'","private":'$privado'}'
