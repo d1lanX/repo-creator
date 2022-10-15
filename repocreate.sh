@@ -23,7 +23,24 @@ echo "\nSe va a crear un repositorio llamado: ${RED}$nombreRepo${ENDCOLOR}\n"
 
 mkdir $nombreRepo && cd $nombreRepo
 
-echo "${GREEN}Deseas crear archivos README.md y .gitignore? (y/n)${ENDCOLOR}"
+echo "${GREEN}Deseas que el repositorio sea...${ENDCOLOR}?"
+echo "1. Publico"
+echo "2. Privado"
+
+echo -n "> "
+read -r privacidad
+
+
+privado=true
+if [ "$privacidad" = "1" ]; then
+    privado=false
+elif [ "$privacidad" != "1" ] && [ "$privacidad" != "2" ]; then
+    echo "\n${GREEN}INFO:${ENDCOLOR}Opcion \"$privacidad\" no disponible, se configuro el repositorio como privado\n"
+fi
+
+echo "Es privado el repo: $privado"
+
+echo "\n${GREEN}Deseas crear archivos README.md y .gitignore? (y/n)${ENDCOLOR}"
 read -r readme
 
 # Compruebo que haya una respuesta valida
@@ -51,11 +68,13 @@ read username
 
 echo "\nSi no tienes un token de acceso a tu cuenta de Github..."
 echo "este es el momento para obtenerlo https://tinyurl.com/44xjrs79\n"
-sleep 2
 
-curl -s -u $username https://api.github.com/user/repos -d '{"name":"'$nombreRepo'","private":false}'
+
+curl -s -u $username https://api.github.com/user/repos -d '{"name":"'$nombreRepo'","private":'$privado'}'
 
 URL=https://github.com/$username/$nombreRepo.git
+
+clear
 
 git remote add origin $URL
 
@@ -70,7 +89,4 @@ rm -rf $nombreRepo
 
 echo "\n${GREEN}Clonando repositorio del origen...${ENDCOLOR}\n"
 git clone $URL
-echo "\n${RED}Repositorio creado en $(pwd)!${ENDCOLOR}"
-
-
-
+echo "\n${GREEN}Repositorio creado en $(pwd)!${ENDCOLOR}\n"
