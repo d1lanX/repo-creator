@@ -11,7 +11,15 @@ echo "${GREEN}|  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  |${ENDCOLOR}"
 echo "${GREEN}\nEscribe el nombre del repositorio: ${ENDCOLOR}"
 echo -n "> "
 read -r nombreRepo
-echo "\nEl nombre del repositorio es ${RED}$nombreRepo${ENDCOLOR}\n"
+
+# Miro que la variable no este vacia
+while [ -z "$nombreRepo" ]; do
+    echo "El nombre del repositorio ${RED}no${ENDCOLOR} puede estar en blanco: "
+    echo -n "> "
+    read -r nombreRepo
+done
+
+echo "\nSe va a crear un repositorio llamado: ${RED}$nombreRepo${ENDCOLOR}\n"
 
 mkdir $nombreRepo && cd $nombreRepo
 
